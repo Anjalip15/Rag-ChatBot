@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RAG Chatbot</title>
+<style>
+ body{font-family:system-ui,Arial,sans-serif;max-width:760px;margin:0 auto;padding:16px;color:#222}
+ h1{font-size:22px;color:#5b4fcf} .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+ #chat{border:1px solid #ddd;border-radius:10px;padding:12px;height:55vh;overflow:auto;background:#fafafa}
+ .msg{margin:8px 0;padding:8px 12px;border-radius:10px;white-space:pre-wrap;max-width:90%}
+ .u{background:#5b4fcf;color:#fff;margin-left:auto;width:fit-content} .b{background:#fff;border:1px solid #e3e3e3}
+ details{font-size:13px;margin-top:6px;color:#555} .row{display:flex;gap:8px;margin-top:10px}
+ input[type=text]{flex:1;padding:10px;border:1px solid #ccc;border-radius:8px} button{padding:9px 14px;border:0;border-radius:8px;background:#5b4fcf;color:#fff;cursor:pointer}
+ button.s{background:#888} #st{font-size:13px;color:#666}
+</style></head><body>
+<h1>RAG Chatbot</h1>
+<div class="bar">
+  <input type="file" id="f" accept=".pdf,.txt"><button onclick="up()">Upload</button>
+  <button class="s" onclick="rs()">Reset</button><span id="st"></span>
+</div>
+<div id="chat"></div>
+<div class="row"><input type="text" id="q" placeholder="Ask about your documents..." onkeydown="if(event.key==='Enter')ask()"><button onclick="ask()">Ask</button></div>
+<script>
+const chat=document.getElementById('chat'),st=document.getElementById('st');
+function add(t,c){const d=document.createElement('div');d.className='msg '+c;d.textContent=t;chat.appendChild(d);chat.scrollTop=chat.scrollHeight;return d}
+async function status(){try{const r=await fetch('/status');const j=await r.json();st.textContent=r.ok?`${j.documents.length} doc(s), ${j.chunks} chunks`:(j.detail||'error')}catch(e){st.textContent='offline'}}
+async function up(){const f=document.getElementById('f').files[0];if(!f)return;st.textContent='Uploading...';const fd=new FormData();fd.append('file',f);
+ const r=await fetch('/upload',{method:'POST',body:fd});const j=await r.json();add(r.ok?j.message+` (${j.chunks_created} chunks)`:'Error: '+j.detail,'b');status()}
+async function ask(){const i=document.getElementById('q'),q=i.value.trim();if(!q)return;i.value='';add(q,'u');const w=add('Thinking...','b');
+ const r=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});const j=await r.json();
+ if(!r.ok){w.textContent='Error: '+j.detail;return}
+ w.textContent=j.answer;const d=document.createElement('details');const s=document.createElement('summary');s.textContent=`Sources (${j.sources.length})`;d.appendChild(s);
+ j.sources.forEach(x=>{const p=document.createElement('p');p.textContent=`[${x.id}] ${x.file}${x.page!=null?' p.'+(x.page+1):''} (distance ${x.distance}): ${x.text}`;d.appendChild(p)});w.appendChild(d)}
+async function rs(){if(!confirm('Delete all documents?'))return;await fetch('/reset',{method:'DELETE'});add('Knowledge base cleared.','b');status()}
+status();
+</script></body></html>

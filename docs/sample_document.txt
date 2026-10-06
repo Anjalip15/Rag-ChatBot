@@ -1,0 +1,54 @@
+PlanetMeta AI Internship — Knowledge Base Document
+
+ABOUT PLANETMETA
+PlanetMeta is building an AI-powered metaverse platform for education and engagement.
+The platform combines virtual reality environments with intelligent AI assistants
+that can answer student questions, guide learning paths, and provide personalised feedback.
+
+INTERNSHIP RESPONSIBILITIES
+Interns at PlanetMeta will work on the following tasks:
+1. Developing AI and ML based features using Python
+2. Building LLM-powered applications using LangChain and LangGraph
+3. Designing and optimising RAG pipelines for document retrieval
+4. Working with Flask, FastAPI, and Django for backend development
+5. Supporting machine learning model training, evaluation, and deployment
+6. Collaborating on agentic AI workflows and intelligent automation
+7. Documenting technical workflows and experiments clearly
+
+REQUIRED SKILLS
+The internship requires strong knowledge of the following:
+- Python programming as the primary language
+- LangChain for building LLM pipelines
+- LangGraph for agentic workflow design
+- RAG pipeline architecture and vector databases
+- FastAPI or Flask for REST API development
+- Natural Language Processing techniques
+- Machine learning fundamentals
+
+ABOUT RAG PIPELINES
+RAG stands for Retrieval-Augmented Generation. It is a technique where an LLM
+is given relevant documents as context before generating an answer. This prevents
+hallucination and keeps answers grounded in real facts.
+
+The RAG pipeline has two phases:
+Indexing phase: Load documents, split into chunks, embed using an embedding model,
+store vectors in a vector database like ChromaDB or Pinecone.
+
+Query phase: Embed the user question, find similar chunks using cosine similarity,
+inject top chunks into the LLM prompt, generate a grounded answer.
+
+ABOUT LANGCHAIN
+LangChain is a Python framework that provides ready-made components for building
+LLM-powered applications. Key components include document loaders, text splitters,
+embedding wrappers, vector store integrations, and chain abstractions.
+
+ABOUT LANGGRAPH
+LangGraph extends LangChain for building agentic workflows modelled as directed graphs.
+Nodes represent LLM calls or tool invocations. Edges represent transitions between steps.
+LangGraph supports cycles, branching, multi-agent coordination, and state checkpointing.
+
+INTERNSHIP DURATION AND PERKS
+Duration: 6 months, work from home
+Start date: Between 7th April 2026 and 12th May 2026
+Camera and microphone required for assessments and meetings
+Certificate provided on completion

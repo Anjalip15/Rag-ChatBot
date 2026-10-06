@@ -1,0 +1,8 @@
+[
+  {"question": "How long is the internship?", "must_contain": ["6 months"], "expected_source_keyword": "Duration"},
+  {"question": "Which backend frameworks will interns work with?", "must_contain": ["FastAPI"], "expected_source_keyword": "Flask"},
+  {"question": "What are the two phases of a RAG pipeline?", "must_contain": ["Indexing", "Query"], "expected_source_keyword": "two phases"},
+  {"question": "What does LangGraph support?", "must_contain": ["cycles"], "expected_source_keyword": "LangGraph supports"},
+  {"question": "Is a certificate provided?", "must_contain": ["certificate"], "expected_source_keyword": "Certificate"},
+  {"question": "What is the capital of France?", "must_contain": ["couldn't find"], "expected_source_keyword": null}
+]

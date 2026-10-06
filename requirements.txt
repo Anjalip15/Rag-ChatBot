@@ -1,0 +1,16 @@
+fastapi>=0.110
+uvicorn>=0.29
+python-multipart>=0.0.9
+python-dotenv>=1.0
+pydantic>=2.6
+numpy>=1.26
+langchain-core>=0.3
+langchain-community>=0.3
+langchain-text-splitters>=0.3
+langchain-google-genai>=2.1
+pypdf>=4.1
+pytest>=8.0
+httpx>=0.27
+# Optional ChromaDB backend (set VECTOR_BACKEND=chroma in .env):
+# langchain-chroma>=0.2
+# chromadb>=0.5
